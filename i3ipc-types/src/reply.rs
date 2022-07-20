@@ -55,6 +55,7 @@ pub struct Node {
     pub output: Option<String>,
     pub orientation: NodeOrientation,
     pub border: NodeBorder,
+    #[serde(default = "ScratchpadState::empty")]
     pub scratchpad_state: ScratchpadState,
     pub percent: Option<f64>,
     pub rect: Rect,
@@ -283,6 +284,12 @@ pub enum ScratchpadState {
     None,
     Fresh,
     Changed,
+}
+
+impl ScratchpadState {
+    pub fn empty() -> Self {
+        ScratchpadState::None
+    }
 }
 
 /// Marks Reply
